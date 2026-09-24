@@ -58,7 +58,10 @@ def test_split_gives_exactly_per_class_known_labels():
     tr = S.split(y, 5, 1)
     assert tr.sum() == 15 and all(tr[y == c].sum() == 5 for c in range(3))
     assert np.array_equal(tr, S.split(y, 5, 1)) and not np.array_equal(tr, S.split(y, 5, 2))
-    assert S.split(np.array([0, 0, 1]), 5, 1).sum() == 3                                            # weniger Kunden als gewünscht: alle bekannt
+    assert S.split(np.array([0, 0, 1]), 5, 1).sum() == 2                                            # weniger Kunden als gewünscht: es bleibt Prüfmenge übrig (hier je Typ mindestens ein bekannter)
+    y8 = np.array([0] * 8 + [1] * 8 + [2] * 8)
+    tr8 = S.split(y8, 20, 1)
+    assert all(tr8[y8 == c].sum() == 6 for c in range(3)) and (~tr8).sum() == 6              # mindestens zwei unbekannte Kunden je Typ
 
 
 def test_analyse_is_consistent():

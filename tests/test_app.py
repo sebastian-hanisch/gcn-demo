@@ -86,7 +86,7 @@ def test_permalink_values_are_snapped_and_clamped():
     assert at.session_state["layers_slider"] == C.LAYERS_MIN and at.session_state["labels_slider"] == C.DEFAULT_LABELS
 
 
-@pytest.mark.parametrize("kw", [dict(n_slider=C.N_MIN, classes_slider=2, labels_slider=20), dict(n_slider=C.N_MAX, classes_slider=4, neighbors_slider=10), dict(layers_slider=C.LAYERS_MAX),
+@pytest.mark.parametrize("kw", [dict(n_slider=C.N_MIN, classes_slider=4, labels_slider=C.LABELS_MAX), dict(n_slider=C.N_MIN, classes_slider=2, labels_slider=20), dict(n_slider=C.N_MAX, classes_slider=4, neighbors_slider=10), dict(layers_slider=C.LAYERS_MAX),
                                 dict(wrong_slider=1.0), dict(noise_slider=C.NOISE_MAX), dict(neighbors_slider=C.NEIGHBORS_MIN, labels_slider=C.LABELS_MIN)])
 def test_extreme_settings_run(kw):
     _ok(_run(**kw))
