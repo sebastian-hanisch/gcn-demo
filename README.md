@@ -1,5 +1,7 @@
 # 🕸️ GCN – Nachbarn statt Etiketten
 
+**[→ Demo live ausprobieren](https://sebastianhanisch-gcn-demo.streamlit.app/)**
+
 Erstes Stück der **Graph-Neural-Network-Linie** der "Konzepte"-Reihe im Portfolio von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning – und die **erste Demo des Portfolios
 mit neuronalen Netzen auf Graphen**. Es ist die **Wurzel** der Linie (GCN → GraphSAGE, GAT → GATv2, GIN → Graph Transformer; die übrigen Stücke sind noch nicht gebaut).
 
