@@ -3,7 +3,7 @@
 **[→ Demo live ausprobieren](https://sebastianhanisch-gcn-demo.streamlit.app/)**
 
 Erstes Stück der **Graph-Neural-Network-Linie** der "Konzepte"-Reihe im Portfolio von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning – und die **erste Demo des Portfolios
-mit neuronalen Netzen auf Graphen**. Es ist die **Wurzel** der Linie (GCN → GraphSAGE, GAT → GATv2, GIN → Graph Transformer; die übrigen Stücke sind noch nicht gebaut).
+mit neuronalen Netzen auf Graphen**. Es ist die **Wurzel** der Linie (GCN → GraphSAGE, GAT → GATv2, GIN → Graph Transformer; alle Stücke sind gebaut).
 
 Vehikel **D "Liefergebiete"**: 60 bis 400 Kunden in einem Gebiet, das in räumlich zusammenhängende **Gebietstypen** zerfällt (Innenstadt, Vorstadt, Ländlich, Gewerbegebiet); vier verrauschte Merkmale je Kunde (Stopps je Stunde,
 Parksuche, Ladegewicht, Zeitfenster-Enge); der Graph verbindet die $k$ räumlich nächsten Kunden. Nur wenige Gebietstypen sind bekannt (semi-überwachtes Lernen), alle übrigen Kunden werden vorhergesagt und zur Prüfung
@@ -41,9 +41,9 @@ schadet und was Tiefe mit den Merkmalen macht** – und benennt damit die Schwä
 | Wie stark streuen einzelne Gebiete? | Über 8 Seeds: GCN 63 bis 94 %, MLP 40 bis 69 %; der Graph gewinnt in jedem. Der Standardfall ist ein typisches, kein bestes Gebiet. | `test_spread_over_areas_is_large` |
 | Wenige Etiketten (Mittel über 12 Seeds) | 2 Etiketten je Typ: GCN 82,7 % gegen MLP 52,0 %; 20 Etiketten: 91,4 % gegen 60,7 %. Der Graph gewinnt in allen 12 Gebieten bei jeder Etikettenzahl; der Abstand bleibt bei etwa 30 Punkten – mehr Etiketten helfen beiden, ersetzen die Nachbarn aber nicht. Nur 6 bekannte Kunden (Preset): 81,4 % gegen 50,0 %. | `test_labels_experiment`, `test_preset_two_labels` |
 | Stark verrauschte Merkmale | Rauschen 3,0: MLP 42,7 % (Raten 41,1 %), GCN 77,3 %. Vier Typen: MLP 32,1 % – **schlechter als Raten** (33,9 %) –, GCN 77,5 %. | `test_preset_noisy_features`, `test_preset_four_types` |
-| Was, wenn die Nachbarn nicht stimmen? (12 Seeds) | Mit dem Anteil zufällig ersetzter Kanten sinkt die Homophilie von 91 % auf 38 % und das GCN von 87,9 % auf 46,2 %; das MLP (sieht die Kanten nie) bleibt bei 57,8 %. **Kipppunkt** zwischen Homophilie 59 % (GCN 65,5 %, gewinnt in 9 von 12 Gebieten) und 49 % (GCN 52,9 %, gewinnt in 4 von 12). Preset "Halb falsche Nachbarn" (Homophilie 46,4 %): GCN 49,7 % gegen MLP 68,6 %, und das GCN lernt nicht einmal alle 15 bekannten Etiketten (Trainingsgenauigkeit 80 %). | `test_wrong_edges_experiment`, `test_preset_wrong_neighbors` |
+| Was, wenn die Nachbarn nicht stimmen? (12 Seeds) | Mit dem Anteil zufällig ersetzter Kanten sinkt die Homophilie von 91 % auf 38 % und das GCN von 87,9 % auf 46,2 %; das MLP (sieht die Kanten nie) bleibt bei 57,8 %. **Kipppunkt** zwischen Homophilie 59 % (GCN 65,5 %, gewinnt in 9 von 12 Gebieten) und 49 % (GCN 52,9 %, gewinnt in 4 von 12). Preset "Meist falsche Nachbarn" (Homophilie 46,4 %): GCN 49,7 % gegen MLP 68,6 %, und das GCN lernt nicht einmal alle 15 bekannten Etiketten (Trainingsgenauigkeit 80 %). | `test_wrong_edges_experiment`, `test_preset_wrong_neighbors` |
 | Wird zu viel Mitteln zum Problem? (reine Glättung, kein Lernen, 12 Seeds) | Nächster-Mittelpunkt-Genauigkeit auf $\hat A^k X$: 62,4 % (k = 0) → 85,6 % (1) → **92,0 % (8)** → 78,0 % (128); Streuung der Merkmale schrumpft von 100 % auf 52,7 % (1) und 13,5 % (128): alle Kunden werden einander ähnlich (Über-Glättung), aber langsam. | `test_smoothing_experiment` |
-| Und im trainierten Netz? | **Kein Einbruch bis 8 Schichten**: 85 bis 89 % in allen Tiefen (1 Schicht 84,5 %, 2 Schichten 87,9 %), Standardfehler bis 2,7 Punkte. Warum das trainierte Netz die Glättung übersteht (Gewichte gleichen aus, der Graph ist räumlich glatt), wurde nicht getrennt gemessen. Preset "Tiefes Netz": 91,9 % (8 Schichten) gegen 88,1 % (2). | `test_smoothing_experiment`, `test_preset_deep_network` |
+| Und im trainierten Netz? | **Kein Einbruch bis 8 Schichten**: 84,5 bis 88,7 % in allen Tiefen (1 Schicht 84,5 %, 2 Schichten 87,9 %), Standardfehler bis 2,7 Punkte. Warum das trainierte Netz die Glättung übersteht (Gewichte gleichen aus, der Graph ist räumlich glatt), wurde nicht getrennt gemessen. Preset "Tiefes Netz": 91,9 % (8 Schichten) gegen 88,1 % (2). | `test_smoothing_experiment`, `test_preset_deep_network` |
 
 ## Ehrliche Grenzen
 
@@ -92,3 +92,7 @@ streamlit run app.py
 ```
 
 Gebaut mit Streamlit, Plotly und numpy.
+
+---
+
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Graph Neural Networks: vom GCN zum Transformer](https://sebastianhanisch.net/konzepte-graph-neural-networks.html).

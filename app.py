@@ -200,7 +200,7 @@ if st.session_state.get("wrong_on"):
         f"**Befund:** Ohne falsche Kanten (Homophilie {pct(r0['homophily'])}) schlägt das GCN das MLP mit {pct(r0['gcn'])} gegen {pct(r0['mlp'])}; bei vollständig zufälligen Kanten (Homophilie {pct(rl['homophily'])}) liegt es mit "
         f"{pct(rl['gcn'])} darunter (MLP {pct(rl['mlp'])}, gewinnt in {rl['wins']} von {rl['n_seeds']} Gebieten). "
         + (f"Im Mittel kippt es zwischen Homophilie {pct(rows_w[rows_w.index(first_loss) - 1]['homophily'])} und {pct(first_loss['homophily'])}. " if first_loss and rows_w.index(first_loss) > 0 else "")
-        + "Ein GCN gewichtet alle Nachbarn gleich und kann falsche nicht erkennen - genau dort setzt die Aufmerksamkeit (GAT) im nächsten Stück an."
+        + "Ein GCN gewichtet alle Nachbarn gleich und kann falsche nicht erkennen - genau dort setzt die Aufmerksamkeit (GAT, `gat-demo`) an."
     )
 
 st.markdown("---")
@@ -236,7 +236,7 @@ st.markdown(
     """
 | Annahme | Was passiert, wenn sie verletzt ist | Wer setzt an |
 |---|---|---|
-| **Nachbarn haben meist denselben Typ (Homophilie)** | Bei zufälligen oder gegensätzlichen Nachbarn schadet das Mitteln (Experiment oben); ein GCN kann Kanten nicht nach ihrem Nutzen gewichten. | GAT, dann GATv2 (nächste Stücke) |
+| **Nachbarn haben meist denselben Typ (Homophilie)** | Bei zufälligen oder gegensätzlichen Nachbarn schadet das Mitteln (Experiment oben); ein GCN kann Kanten nicht nach ihrem Nutzen gewichten. | GAT, dann GATv2 (gebaut) |
 | **Alle Nachbarn zählen ähnlich (Gewicht nur aus den Graden)** | Wichtige und unwichtige Nachbarn werden gleich behandelt; das Gewicht hängt nie vom Inhalt ab. | GAT |
 | **Der ganze Graph passt in den Speicher und ist beim Training bekannt** | Die Normierung nutzt den ganzen Graphen (transduktiv); für neue Knoten oder sehr große Graphen braucht man Stichproben der Nachbarschaft. | GraphSAGE |
 | **Summe über Nachbarn genügt, um Strukturen zu unterscheiden** | Mitteln kann verschiedene Nachbarschaften mit gleichem Durchschnitt nicht unterscheiden. | GIN |
@@ -244,7 +244,7 @@ st.markdown(
 | **Vier erzeugte Merkmale, Gebietstypen als Voronoi-Zonen** | Reale Daten sind unordentlicher; die Zahlen gelten für dieses Vehikel und die genannten Größen. | – |
 """
 )
-st.caption("Die Linie: GCN → GraphSAGE, GAT → GATv2, GIN → Graph Transformer (Stücke noch nicht gebaut).")
+st.caption("Die Linie: GCN → GraphSAGE, GAT → GATv2, GIN → Graph Transformer (alle Stücke gebaut).")
 
 st.markdown("---")
 
@@ -272,6 +272,6 @@ Implementiert in `gcn_algorithm.py` (Normierung, Vorwärts- und Rückwärtsrechn
 st.markdown("---")
 st.caption(
     "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
-    "Operations Research und Machine Learning. Interesse an einer maßgeschneiderten Lösung für "
-    "Ihr Unternehmen? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html)"
+    "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
+    "Mehr zur Reihe: [Graph Neural Networks: vom GCN zum Transformer](https://sebastianhanisch.net/konzepte-graph-neural-networks.html)."
 )

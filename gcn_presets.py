@@ -35,7 +35,7 @@ STEPS = {"n_slider": C.N_STEP, "noise_slider": C.NOISE_STEP, "wrong_slider": C.W
 PRESETS = {
     "Standardfall": {"n": 200, "classes": 3, "labels": 5, "neighbors": 5, "noise": 1.5, "wrong": 0.0, "layers": 2, "seed": 7},
     "Nur 2 Etiketten je Gebietstyp": {"n": 200, "classes": 3, "labels": 2, "neighbors": 5, "noise": 1.5, "wrong": 0.0, "layers": 2, "seed": 7},
-    "Halb falsche Nachbarn": {"n": 200, "classes": 3, "labels": 5, "neighbors": 5, "noise": 1.5, "wrong": 0.8, "layers": 2, "seed": 7},
+    "Meist falsche Nachbarn": {"n": 200, "classes": 3, "labels": 5, "neighbors": 5, "noise": 1.5, "wrong": 0.8, "layers": 2, "seed": 7},
     "Stark verrauschte Merkmale": {"n": 200, "classes": 3, "labels": 5, "neighbors": 5, "noise": 3.0, "wrong": 0.0, "layers": 2, "seed": 7},
     "Tiefes Netz (8 Schichten)": {"n": 200, "classes": 3, "labels": 5, "neighbors": 5, "noise": 1.5, "wrong": 0.0, "layers": 8, "seed": 7},
     "Vier Gebietstypen": {"n": 300, "classes": 4, "labels": 5, "neighbors": 5, "noise": 1.5, "wrong": 0.0, "layers": 2, "seed": 7},
@@ -96,7 +96,7 @@ def randomize_seed():
 PRESET_HELP = {
     "Standardfall": "200 Kunden, 3 Gebietstypen, 5 bekannte Etiketten je Typ, 5 Nachbarn, Rauschen 1,5: das GCN erreicht 88,1 % auf den 185 unbekannten Kunden, dasselbe Netz ohne Nachbarn (MLP) nur 68,6 %; 92,4 % der Kanten verbinden Kunden desselben Typs.",
     "Nur 2 Etiketten je Gebietstyp": "Nur 6 bekannte Kunden insgesamt: das GCN erreicht noch 81,4 %, das MLP nur 50,0 % (Raten: 40,7 %). Der Graph trägt die wenigen Etiketten weiter.",
-    "Halb falsche Nachbarn": "80 % der Kanten sind durch zufällige ersetzt (Homophilie 46,4 %): das GCN fällt auf 49,7 % und liegt damit unter dem MLP (68,6 %) - es kann falsche Nachbarn nicht erkennen und kann nicht einmal alle 15 bekannten Etiketten lernen (Trainingsgenauigkeit 80 %).",
+    "Meist falsche Nachbarn": "80 % der Kanten sind durch zufällige ersetzt (Homophilie 46,4 %): das GCN fällt auf 49,7 % und liegt damit unter dem MLP (68,6 %) - es kann falsche Nachbarn nicht erkennen und kann nicht einmal alle 15 bekannten Etiketten lernen (Trainingsgenauigkeit 80 %).",
     "Stark verrauschte Merkmale": "Rauschen 3,0: einzelne Kunden verraten kaum noch ihren Typ. Das MLP kommt nur auf 42,7 % (Raten: 41,1 %), das GCN mit Nachbarn auf 77,3 %.",
     "Tiefes Netz (8 Schichten)": "Acht Schichten: das GCN erreicht 91,9 % (2 Schichten: 88,1 %) - kein Einbruch durch Über-Glättung; im Experiment unten zeigt reine Glättung ohne Lernen erst nach dutzenden Schritten Wirkung.",
     "Vier Gebietstypen": "300 Kunden, 4 Typen, 5 Etiketten je Typ: das GCN erreicht 77,5 %, das MLP nur 32,1 % - weniger als das Raten des häufigsten Typs (33,9 %).",

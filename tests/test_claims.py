@@ -28,7 +28,7 @@ def test_preset_two_labels():
 
 
 def test_preset_wrong_neighbors():
-    a = analyse_preset("Halb falsche Nachbarn")
+    a = analyse_preset("Meist falsche Nachbarn")
     assert a.graph.edge_homophily() == pytest.approx(0.464, abs=0.001) and a.acc_gcn == pytest.approx(0.497, abs=0.015) and a.acc_mlp == pytest.approx(0.686, abs=0.015)
     assert a.acc_gcn < a.acc_mlp and a.gcn.history["train_acc"][-1] == pytest.approx(0.80, abs=0.07)                                   # lernt nicht einmal alle 15 bekannten Etiketten
 

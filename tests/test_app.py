@@ -42,7 +42,7 @@ def test_every_preset_button_runs(name):
 
 def test_wrong_neighbors_preset_shows_the_graph_hurting():
     at = _run()
-    next(b for b in at.button if b.key == "preset_Halb falsche Nachbarn").click().run()
+    next(b for b in at.button if b.key == "preset_Meist falsche Nachbarn").click().run()
     _ok(at)
     assert any("Der Graph schadet" in w.value for w in at.warning)
 
