@@ -55,6 +55,17 @@ und die **räumlichen Nachbarn**. Ein **Graph Convolutional Network** (Kipf/Well
 darauf ein kleines neuronales Netz. Dieselbe Rechnung ohne Nachbarn ist ein gewöhnliches **MLP**. Die Demo zeigt, wann der Graph hilft, wann er schadet, und was Tiefe mit den Merkmalen macht.
 """
 )
+
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/gcn-nachbarn-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Ein Lieferdienst kennt den Gebietstyp, etwa Innenstadt oder Vorstadt, nur von wenigen Kunden. Von allen anderen hat er verrauschte Messwerte, die von Kunde zu Kunde zufällig schwanken. Ein **Graph Convolutional Network** mischt in jeder Schicht die Werte eines Kunden unter die seiner nächsten Nachbarn auf der Karte und lernt darauf ein kleines neuronales Netz. Das Zufallsrauschen einzelner Kunden gleicht sich dabei aus, und Nachbarn haben meist denselben Gebietstyp. Zum Vergleich läuft dasselbe Netz ganz ohne Nachbarn, jeder Unterschied kommt also vom Graphen. Die Demo zeigt, wann der Graph hilft, wann er schadet, weil die Nachbarschaftsliste nicht stimmt, und was zu viele Schichten mit den Messwerten machen. Alle Daten sind erzeugt.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/gcn-nachbarn-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
 st.caption(
     "Erstes Stück der **Graph-Neural-Network-Linie** der \"Konzepte\"-Reihe (Wurzel) und die erste Demo des Portfolios mit neuronalen Netzen auf Graphen. Alle Daten sind erzeugt, das Netz ist von Grund auf in numpy geschrieben. "
     "**Bezug zu OR:** dieselben Nachbarschaftsgraphen tragen Tourenplanung und Gebietszuschnitt; hier lernt ein Netz auf ihnen, statt dass ein Optimierer über sie läuft."
@@ -249,6 +260,23 @@ st.caption("Die Linie: GCN → GraphSAGE, GAT → GATv2, GIN → Graph Transform
 st.markdown("---")
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/gcn-nachbarn-erklaert.json, nicht von Hand ändern)
+    st.markdown(
+        r"""
+**Lesehilfe.** Gegeben sind $n$ Kunden als Knoten eines Graphen mit Nachbarschaftsmatrix $A$, Merkmale $x_i$ je Kunde und der Gebietstyp $y_i$ für $m$ von ihnen. Gesucht sind Gewichte $W^{(l)}$, mit denen das Netz auch die Gebietstypen der übrigen Kunden trifft.
+
+| Symbol | Bedeutung |
+|---|---|
+| $A$, $\tilde A$ | Nachbarschaftsmatrix und dieselbe Matrix mit einer Schleife je Knoten, $\tilde A = A + I$ |
+| $\hat A$ | normierte Nachbarschaftsmatrix: das Gewicht, mit dem ein Nachbar in die Mischung eingeht |
+| $H^{(l)}$, $W^{(l)}$ | Werte aller Kunden nach Schicht $l$ und die lernbare Matrix dieser Schicht |
+| $L$ | Zahl der Schichten |
+| $m$, $\lambda$ | Zahl der Kunden mit bekanntem Gebietstyp und Gewichtszerfall |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/gcn-nachbarn-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
     st.markdown(
         r"""
 **Graph.** Knoten $i = 1..n$ mit Merkmalen $x_i \in \mathbb R^4$, Etikett $y_i \in \{1..K\}$ (nur für $m$ Knoten bekannt), Nachbarschaftsmatrix $A \in \{0,1\}^{n \times n}$ (symmetrisch, $k$ nächste Nachbarn).
