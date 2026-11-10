@@ -68,7 +68,7 @@ Ein Lieferdienst kennt den Gebietstyp, etwa Innenstadt oder Vorstadt, nur von we
 # erklaerseite:einfach:end
 st.caption(
     "Erstes Stück der **Graph-Neural-Network-Linie** der \"Konzepte\"-Reihe (Wurzel) und die erste Demo des Portfolios mit neuronalen Netzen auf Graphen. Alle Daten sind erzeugt, das Netz ist von Grund auf in numpy geschrieben. "
-    "**Bezug zu OR:** dieselben Nachbarschaftsgraphen tragen Tourenplanung und Gebietszuschnitt; hier lernt ein Netz auf ihnen, statt dass ein Optimierer über sie läuft."
+    "**Bezug zu OR:** dieselben Nachbarschaftsgraphen liegen Tourenplanung und Gebietszuschnitt zugrunde; hier lernt ein Netz auf ihnen, statt dass ein Optimierer über sie läuft."
 )
 
 with st.expander("So funktioniert ein GCN", expanded=True):

@@ -9,7 +9,7 @@ Vehikel **D "Liefergebiete"**: 60 bis 400 Kunden in einem Gebiet, das in räumli
 Parksuche, Ladegewicht, Zeitfenster-Enge); der Graph verbindet die $k$ räumlich nächsten Kunden. Nur wenige Gebietstypen sind bekannt (semi-überwachtes Lernen), alle übrigen Kunden werden vorhergesagt und zur Prüfung
 benutzt. Alle Daten sind erzeugt, das Netz ist von Grund auf in numpy geschrieben.
 
-**Bezug zu OR:** dieselben Nachbarschaftsgraphen tragen Tourenplanung und Gebietszuschnitt; hier lernt ein Netz auf ihnen, statt dass ein Optimierer über sie läuft.
+**Bezug zu OR:** dieselben Nachbarschaftsgraphen liegen Tourenplanung und Gebietszuschnitt zugrunde; hier lernt ein Netz auf ihnen, statt dass ein Optimierer über sie läuft.
 
 ## Warum dieses Problem
 
